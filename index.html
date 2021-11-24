@@ -8,12 +8,30 @@
     <link href="style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <h1>
+    <header>
+      <div class="header-image-container">
+        <img src="logo.png" alt="logo">
+      </div>
+      <h1>
         Benny's Typing Game
-    </h1>
+      </h1>
+
+    </header>
     <button type ="button" id= "start-typing-button">Start typing button</button>
     
+    <div id="what-to-type">
+        <p>
+            Type this please
+        </p>
+    </div>
 
+
+    <div class="typing-input">
+        <label for="post-text-input">Text</label>
+        <input type="text" id="post-text-input">
+      </div>
+
+      
 
 
 
@@ -23,7 +41,32 @@
 
 
   
-    
+   <div id="modal-backdrop" class="hidden"></div>
+    <div id="save-score-modal" class="hidden">
+      <div class="modal-dialog">
+
+        <div class="modal-header">
+          <h3>Save Score</h3>
+          <button type="button" id="modal-close" class="modal-hide-button">&times;</button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="score-input-element">
+            <label for="name-input">Name</label>
+            <input type="text" id="name-input"></input>
+          </div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="modal-cancel" class="modal-hide-button action-button">dont save</button>
+          <button type="button" id="modal-accept" class="action-button">Save</button>
+        </div>
+
+      </div>
+    </div>  
+   </div> 
   </body>
 </html>
   <div id="root"></div>

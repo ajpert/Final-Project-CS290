@@ -3,8 +3,10 @@ body
   background-color: #ff8800;
 }
 
-h1
+header
 {
+  display: flex;
+  align-items: center;
   background-color: black;
   color: #ffffff;
   text-align: center;
@@ -13,7 +15,15 @@ h1
   box-shadow: 4px 4px 12px rgba(0, 0, 0, .5);
 }
 
-#start-typing-button {
+h1
+{
+  align-self: center;
+}
+
+#start-typing-button 
+{
+  position: relative;
+  left: 30px;
   height: 45px;
   font-size: 20px;
   color: white;
@@ -24,10 +34,73 @@ h1
   font-weight: lighter;
   cursor: pointer;
   box-shadow: 4px 4px 12px rgba(0, 0, 0, .5);
-  margin-left: 300px
-
+  
 }
 
-.hidden {
+#start-typing-button:hover
+{
+	transform: scale(1.2);
+}
+
+#start-typing-button:active 
+{
+  transform: scale(1);
+}
+
+#what-to-type
+{
+  display: block;
+  margin-top: 50px;
+  background-color: black;
+  color: #ffffff;
+  text-align: center;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, .5);
+}
+
+
+
+.typing-input 
+{
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+
+/*Modal stuff, lots of copied stuff*/
+
+.hidden 
+{
   display: none;
+}
+#modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+#save-score-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1010;
+  overflow: scroll;
+}
+.modal-dialog {
+  width: auto;
+  max-width: 600px;
+  min-width: 350px;
+  min-height: 300px;
+  margin: 40px auto;
+  background-color: #fff;
+  border-radius: 15px;
 }
