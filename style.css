@@ -1,0 +1,30 @@
+body
+{
+  background-color: #ff8800;
+}
+
+h1
+{
+  background-color: black;
+  color: #ffffff
+  text-align: center;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, .5);
+}
+enter;
+  height: 200px;
+  font-size: 20px;
+  color: white;
+  padding: 10px;
+  background-color: #000;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  font-weight: lighter;
+  cursor: pointer;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, .5);
+}
+
+.hidden {
+  display: none;
+}
