@@ -1,1 +1,0 @@
-/* Create Modal to opne when you click the start typing button*/
