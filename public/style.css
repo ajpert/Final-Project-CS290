@@ -26,7 +26,7 @@ img
   height: auto;
 }
 
-#start-typing-button 
+#start-typing-button
 {
 
   position: relative;
@@ -41,7 +41,7 @@ img
   border-radius: 5px;
   font-weight: lighter;
   cursor: pointer;
-  box-shadow: 4px 4px 12px rgba(0, 0, 0, .5);  
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, .5);
 }
 
 #start-typing-button:hover
@@ -49,9 +49,16 @@ img
 	transform: scale(1.2);
 }
 
-#start-typing-button:active 
+#start-typing-button:active
 {
   transform: scale(1.1);
+}
+
+#is-it-correct
+{
+	margin-top: 20px;
+	text-align: center;
+	font-size: 20px;
 }
 
 .game-box
@@ -80,7 +87,7 @@ img
   align-items: center;
   font-size: 20px;
   margin: 10px 0;
-  
+
 }
 
 #post-text-input
@@ -108,7 +115,6 @@ img
 .crew
 {
 	display: flex;
-	justify-content: flex-end;
 	justify-content: center;
  	margin-top: 50px;
 	background-color: black;
@@ -122,11 +128,6 @@ img
 }
 
 /*Modal stuff, lots of copied stuff*/
-
-.hidden 
-{
-  display: none;
-}
 
 #modal-backdrop {
   position: fixed;
@@ -144,9 +145,15 @@ img
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1010;
+  z-index: 1100;
   overflow: scroll;
 }
+
+.hidden
+{
+  display: none;
+}
+
 .modal-dialog {
   width: auto;
   max-width: 600px;
@@ -160,11 +167,78 @@ img
   position: relative;
   padding: 10px 20px;
 }
+.modal-header h3 {
+  margin: 0;
+  font-size: 28px;
+}
+#modal-close {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 24px;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
 .modal-body {
   padding: 20px;
 }
+
+.score-input-element {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.score-input-element > label {
+  font-weight: 600;
+  flex: 1 75px;
+  margin-right: 10px;
+}
+
+.score-input-element input {
+  flex: 6 200px;
+  padding: 8px;
+  font-size: 20px;
+  border: 1px solid #aaa;
+}
+
 .modal-footer {
   display: flex;
   justify-content: flex-end;
   padding: 10px 10px 20px 10px;
+}
+
+#modal-cancel,
+#modal-accept {
+  margin-right: 20px;
+}
+
+#modal-cancel {
+  color: #333;
+  background-color: #fff;
+}
+
+#modal-cancel:hover {
+  background-color: #eee;
+}
+
+.action-button {
+  font-size: 20px;
+  color: white;
+  padding: 10px;
+  background-color: #000;
+  border: 1px solid #ababab;
+  border-radius: 5px;
+  font-weight: lighter;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background-color: #f9d2b2;
+  border-color: #333;
+  color: #333;
 }

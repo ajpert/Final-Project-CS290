@@ -6,6 +6,8 @@ var express = require('express');
 var app = express();
 var port = process.env.PORT || 3500;
 
+var test = false;
+
 app.use(express.static('public'));
 
 
@@ -13,10 +15,23 @@ app.get('/', function (req, res, next) {
 if (true) {
     res.status(200).render('index', {
         //: postData
+	//	test = true;
     })
 } else {
     next()
 }
+})
+
+app.get('/index.js', function (req, res) {
+	res.status(200).sendFile(__dirname + '/public/index.js');
+	test = true;
+});
+
+app.get('*', function (req, res) {
+	if (test == false) {
+		console.log("  -- 404!")
+		res.status(404).sendFile(__dirname + '/public/404.html')
+	}
 })
 
 //app.get('*', function (req, res) {
