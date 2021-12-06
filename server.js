@@ -12,7 +12,7 @@ app.use(express.static('public'));
 app.get('/', function (req, res, next) {
 if (true) {
     res.status(200).render('index', {
-        : postData
+        //: postData
     })
 } else {
     next()
