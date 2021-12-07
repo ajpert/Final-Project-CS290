@@ -1,38 +1,34 @@
 [
   {
+    "username": "Zach",
+    "wpm": 56
+  },
+  {
+    "username": "something",
+    "wpm": 53
+  },
+  {
+    "username": "this",
+    "wpm": 52
+  },
+  {
+    "username": "Ian",
+    "wpm": 46
+  },
+  {
+    "username": "newscore",
+    "wpm": 42
+  },
+  {
+    "username": "awoefsndjcxz",
+    "wpm": 25
+  },
+  {
     "username": "Andy",
-    "wpm": 30
+    "wpm": 5
   },
   {
-    "username": "hello",
-    "wpm": 50
-  },
-  {
-    "username": "hello",
-    "wpm": 50
-  },
-  {
-    "username": "hello",
-    "wpm": 50
-  },
-  {
-    "username": "hello",
-    "wpm": 50
-  },
-  {
-    "username": "hello",
-    "wpm": 50
-  },
-  {
-    "username": "asdf",
-    "wpm": 0
-  },
-  {
-    "username": "asdf",
-    "wpm": 0
-  },
-  {
-    "username": "ur mom",
+    "username": "deez",
     "wpm": 0
   }
 ]

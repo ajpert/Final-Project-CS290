@@ -1,9 +1,8 @@
-
 var fs = require('fs')
 var path = require('path');
 var express = require('express');
 var exphbs = require('express-handlebars');
-const { url } = require('inspector');
+
 var app = express();
 var port = process.env.PORT || 3500;
 
@@ -15,7 +14,10 @@ app.use(express.json())
 app.use(express.static('public'));
 
 scoreData = require('./highScores')
+scoreData.sort(function (a, b) { return b.wpm - a.wpm })
+
 console.log(scoreData)
+
 app.get('/', function (req, res, next) {
 if (true) {
     res.status(200).render('gamePage', {score: scoreData})
@@ -38,7 +40,8 @@ app.post('/addScore', function (req, res, next) {
             wpm: wpm
 
         })
-    
+    //scoreData.sort(function (a, b) {return a.wpm-b.wpm})
+    scoreData.sort(function (a, b) { return b.wpm - a.wpm })
     fs.writeFile(
         __dirname + '/highScores.json',
         JSON.stringify(scoreData, null, 2),
@@ -51,13 +54,17 @@ app.post('/addScore', function (req, res, next) {
             }
         }
     )
+    
+
+    
     console.log(scoreData)
 })
 app.get('*', function (req, res) {
-	if (test == false) {
+    res.status(404).render('404')
+	/*if (test == false) {
 		console.log("  -- 404!")
 		res.status(404).sendFile(__dirname + '/public/404.html')
-	}
+	}*/
 })
 
 //app.get('*', function (req, res) {
