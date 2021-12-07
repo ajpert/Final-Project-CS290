@@ -2,22 +2,20 @@
 
 var path = require('path');
 var express = require('express');
-//var exphbs = require('express-handlebars');
+var exphbs = require('express-handlebars');
 var app = express();
 var port = process.env.PORT || 3500;
 
 var test = false;
 
+app.engine('handlebars', exphbs.engine(({ defaultLayout: 'main' })));
+app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
-scoreData = require('./highScore')
-
+scoreData = require('./highScores')
 app.get('/', function (req, res, next) {
 if (true) {
-    res.status(200).render('index', {
-        //: postData
-	//	test = true;
-    })
+    res.status(200).render('gamePage', {score: scoreData})
 } else {
     next()
 }

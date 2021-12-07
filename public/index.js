@@ -4,8 +4,7 @@ let words = ["geeks", "for", "geeks", "a",
 	"zoom", "yup", "fire", "in",
 	"be", "data", "geeks"];
 let user_words = [];
-var text_input = document.getElementById("text-input-button");
-var btn = document.getElementById("start-typing-button");
+
 var count = 0;
 var correct = 0;
 var liveGame = false;
@@ -26,7 +25,6 @@ let score = 0;
 /////FUNCTIONS/////
 function user_append(user_input) { //Function to append users words to array
 	user_words.push(user_input);
-	console.log(user_words);
 }
 
 /*
@@ -37,12 +35,10 @@ btn.onclick = function () {
 	}
 }
 */
-document.getElementById("text-input-button").addEventListener('keypress', function (e) {
+document.getElementById("post-text-input").addEventListener('keypress', function (e) {
 
 	if (e.key === 'Enter' && scoreScreen === false) {
 		if (words.length > (count + 1) && liveGame === true) {
-      console.log(count)
-
 
 			//Clears input box before next input
 
@@ -69,14 +65,13 @@ document.getElementById("text-input-button").addEventListener('keypress', functi
 			count = 0;
 			//pauseTimer();
 			var time = ((end-start)/1000)/60
-      console.log(time)
-			score = correct / time
+			score = Math.round(correct / time)
 			var pop_upBack = document.getElementById('modal-backdrop');
 			var pop_up = document.getElementById('save-score-modal');
 			var editScoreLabel = document.getElementById('score-output')
 			pop_up.classList.remove('hidden');
 			pop_upBack.classList.remove('hidden');
-      console.log(score)
+
 			editScoreLabel.textContent = "Score: " + score + 'words/minute'
 		}
 
@@ -154,6 +149,7 @@ startButton.addEventListener('click', startTypingButton)
 var dontSaveButtons = document.getElementsByClassName('modal-hide-button')
 
 function closeBox() {
+	document.getElementById('name-input').value = ''
 	var hideHighScoreBox = document.getElementById('save-score-modal')
 	var hideHighScoreBoxback = document.getElementById('modal-backdrop')
 	var hideInput = document.getElementById('typing-input')
@@ -200,14 +196,23 @@ function handleClose() {
 var saveButton = document.getElementById('modal-accept')
 saveButton.addEventListener('click', handleSave) 
 function handleSave () {
-  var name = document.getElementById('name-input').value
+  var name = document.getElementById('name-input').value.trim()
   if(name === "") {
-    closeBox()
+	  alert("Please put in your name");
   }
   else {
-    var req = XMLHttpRequest()
-    var url = '/'
-    console.log(name)
-    closeBox()
+	insertScore(name,score)
+	closeBox()
+
   }
+}
+
+function insertScore(username, wpm) {
+	var content = {
+		username: username,
+		wpm: wpm
+	};
+	var saved = Handlebars.templates.highScore(content)
+	var container = document.getElementById('highscore-box')
+	container.insertAdjacentHTML('beforeend',saved)
 }
