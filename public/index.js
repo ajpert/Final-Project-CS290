@@ -9,6 +9,7 @@ var btn = document.getElementById("start-typing-button");
 var count = 0;
 var correct = 0;
 var liveGame = false;
+var scoreScreen = false;
 
 
 var start = 0
@@ -38,7 +39,7 @@ btn.onclick = function () {
 */
 document.getElementById("text-input-button").addEventListener('keypress', function (e) {
 
-	if (e.key === 'Enter') {
+	if (e.key === 'Enter' && scoreScreen === false) {
 		if (words.length > (count + 1) && liveGame === true) {
       console.log(count)
 
@@ -62,6 +63,7 @@ document.getElementById("text-input-button").addEventListener('keypress', functi
 			}
 		}
 		else {
+      scoreScreen = true
       end = Date.now()
       liveGame = false
 			count = 0;
@@ -74,6 +76,7 @@ document.getElementById("text-input-button").addEventListener('keypress', functi
 			var editScoreLabel = document.getElementById('score-output')
 			pop_up.classList.remove('hidden');
 			pop_upBack.classList.remove('hidden');
+      console.log(score)
 			editScoreLabel.textContent = "Score: " + score + 'words/minute'
 		}
 
@@ -125,7 +128,7 @@ var startButton = document.getElementById('start-typing-button')
 
 function startTypingButton() //function to hide and unhide html parts
 {
-
+  scoreScreen = false
   liveGame = true
   start = Date.now()
 	document.getElementById('is-it-correct').innerHTML = 'Have Fun';
@@ -202,6 +205,8 @@ function handleSave () {
     closeBox()
   }
   else {
+    var req = XMLHttpRequest()
+    var url = '/'
     console.log(name)
     closeBox()
   }

@@ -99,8 +99,23 @@ img
   word-wrap: normal;
 }
 
+.highscores-p {
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+
+}
+.username {
+  display:inline-block;
+}
+.wpm {
+  display:inline-block;
+}
+
 .highscore
 {
+  width: 150px;
+  padding: 2px;
 	display: block;
 	align-self: flex-end;
  	margin-top: 50px;
@@ -110,6 +125,10 @@ img
   	border: 2px solid #ffffff;
   	border-radius: 5px;
   	box-shadow: 4px 4px 12px rgba(0, 0, 0, .5);
+    overflow: auto;
+    max-height: 200px
+  
+  
 }
 
 .crew
@@ -126,6 +145,8 @@ img
 	bottom: 5px;
 	align-items: center;
 }
+
+
 
 /*Modal stuff, lots of copied stuff*/
 
