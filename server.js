@@ -1,8 +1,9 @@
 
-
+var fs = require('fs')
 var path = require('path');
 var express = require('express');
 var exphbs = require('express-handlebars');
+const { url } = require('inspector');
 var app = express();
 var port = process.env.PORT || 3500;
 
@@ -10,9 +11,11 @@ var test = false;
 
 app.engine('handlebars', exphbs.engine(({ defaultLayout: 'main' })));
 app.set('view engine', 'handlebars');
+app.use(express.json())
 app.use(express.static('public'));
 
 scoreData = require('./highScores')
+console.log(scoreData)
 app.get('/', function (req, res, next) {
 if (true) {
     res.status(200).render('gamePage', {score: scoreData})
@@ -25,8 +28,30 @@ app.get('/index.js', function (req, res) {
 	res.status(200).sendFile(__dirname + '/public/index.js');
 	test = true;
 });
-app.post('/addScore',function(req,res,next) {
+app.post('/addScore', function (req, res, next) {
+   var body = req.body
+    var username = req.body.username
+    var wpm = req.body.wpm
 
+        scoreData.push({
+            username: username,
+            wpm: wpm
+
+        })
+    
+    fs.writeFile(
+        __dirname + '/highScores.json',
+        JSON.stringify(scoreData, null, 2),
+        function (err) {
+            if (!err) {
+                res.status(200).send("store success")
+            }
+            else {
+                res.status(500).send("store error")
+            }
+        }
+    )
+    console.log(scoreData)
 })
 app.get('*', function (req, res) {
 	if (test == false) {

@@ -1,27 +1,38 @@
 [
-    {
-        "username": "Andy",
-        "wpm": 30
-    },
-
-    {
-        "username": "hello",
-        "wpm": 50
-    },
-    {
-        "username": "hello",
-        "wpm": 50
-    },
-    {
-        "username": "hello",
-        "wpm": 50
-    },
-    {
-        "username": "hello",
-        "wpm": 50
-    },
-    {
-        "username": "hello",
-        "wpm": 50
-    }
+  {
+    "username": "Andy",
+    "wpm": 30
+  },
+  {
+    "username": "hello",
+    "wpm": 50
+  },
+  {
+    "username": "hello",
+    "wpm": 50
+  },
+  {
+    "username": "hello",
+    "wpm": 50
+  },
+  {
+    "username": "hello",
+    "wpm": 50
+  },
+  {
+    "username": "hello",
+    "wpm": 50
+  },
+  {
+    "username": "asdf",
+    "wpm": 0
+  },
+  {
+    "username": "asdf",
+    "wpm": 0
+  },
+  {
+    "username": "ur mom",
+    "wpm": 0
+  }
 ]

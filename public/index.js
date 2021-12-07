@@ -212,6 +212,20 @@ function insertScore(username, wpm) {
 		username: username,
 		wpm: wpm
 	};
+
+	var url = '/addScore';
+	var req = new XMLHttpRequest();
+	req.open('POST',url)
+
+	var reqBody = JSON.stringify(content)
+	req.setRequestHeader('Content-Type', 'application/json')
+	req.send(reqBody)
+	console.log(reqBody)
+	/*
+	var reqBody = JSON.stringify(content)
+	req.setRequestHeader('Content-Type', 'application/json')
+	req.send(reqBody)
+	*/
 	var saved = Handlebars.templates.highScore(content)
 	var container = document.getElementById('highscore-box')
 	container.insertAdjacentHTML('beforeend',saved)
