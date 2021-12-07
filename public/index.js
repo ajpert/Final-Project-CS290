@@ -8,7 +8,11 @@ var text_input = document.getElementById("text-input-button");
 var btn = document.getElementById("start-typing-button");
 var count = 0;
 var correct = 0;
+var liveGame = false;
 
+
+var start = 0
+var end = 0
 //Variables for timer
 let minute = 0;
 let second = 0;
@@ -35,7 +39,7 @@ btn.onclick = function () {
 document.getElementById("text-input-button").addEventListener('keypress', function (e) {
 
 	if (e.key === 'Enter') {
-		if (words.length > (count + 1)) {
+		if (words.length > (count + 1) && liveGame === true) {
       console.log(count)
 
 
@@ -58,9 +62,12 @@ document.getElementById("text-input-button").addEventListener('keypress', functi
 			}
 		}
 		else {
+      end = Date.now()
+      liveGame = false
 			count = 0;
-			pauseTimer();
-			var time = minute + '.' + second + millisecond;
+			//pauseTimer();
+			var time = ((end-start)/1000)/60
+      console.log(time)
 			score = correct / time
 			var pop_upBack = document.getElementById('modal-backdrop');
 			var pop_up = document.getElementById('save-score-modal');
@@ -75,36 +82,12 @@ document.getElementById("text-input-button").addEventListener('keypress', functi
 	}
 
 });
-/*
-//This function compares the words in words and users array
-function isCorrect(user_input)
-{
-  if(user_input === words[count]) {
-    return true;
-  }
-  else {
-    return false;
-  }
-  is_true = true;
- for(var i = 0 ; i < words.length; i++)
- {
-   if(words[i] == user_input){
-     is_true = true;
-     break;
-   }
-   else{
-     is_true = false;
-   }
- }
- return is_true;
-}
-*/
 
 //Functions for timers
-
+/*
 function startTimer() {
 	pauseTimer();
-	stopWatch = setInterval(() => { timer(); }, 10);
+	stopWatch = setInterval(timer,100);
 }
 
 function pauseTimer() {
@@ -118,9 +101,14 @@ function resetTimer() {
 }
 
 function timer() {
-	if ((millisecond += 10) == 1000) {
+  
+  millisecond += 100;
+  //console.log(millisecond)
+  //console.log(millisecond)
+	if (millisecond === 1000) {
 		millisecond = 0;
 		second++;
+    //console.log(second)
 	}
 	if (second == 60) {
 		second = 0;
@@ -131,13 +119,15 @@ function timer() {
 	}
 }
 
-
+*/
 
 var startButton = document.getElementById('start-typing-button')
 
 function startTypingButton() //function to hide and unhide html parts
 {
-  //document.getElementById('name-input').value = ''
+
+  liveGame = true
+  start = Date.now()
 	document.getElementById('is-it-correct').innerHTML = 'Have Fun';
 	var unhideCorrect = document.getElementById('is-it-correct')
 	var unhideInput = document.getElementById('typing-input')
@@ -152,7 +142,7 @@ function startTypingButton() //function to hide and unhide html parts
 	hideStart.classList.add('hidden')
 	hideHigh.classList.add('hidden')
 	hideGroup.classList.add('hidden')
-	startTimer();
+	//startTimer();
 }
 
 startButton.addEventListener('click', startTypingButton)
@@ -179,15 +169,15 @@ function closeBox() {
 	unhideGroup.classList.remove('hidden')
 	score = 0;
 	correct = 0;
-	resetTimer();
+	//resetTimer();
 }
-
+/*
 for (var i = 0; i < dontSaveButtons.length; i++) {
 	console.log('test')
 	dontSaveButtons[i].addEventListener('click', closeBox)
 }
 
-var saveButton = document.getElementById('modal-accept')
+
 
 function saveScore() {
 	var saveScore = 0;
@@ -195,3 +185,24 @@ function saveScore() {
 }
 
 saveButton.addEventListener('click', saveScore)
+*/
+var closeButton = document.getElementById('modal-close')
+var cancelButton = document.getElementById('modal-cancel')
+cancelButton.addEventListener('click',handleClose)
+closeButton.addEventListener('click', handleClose)
+function handleClose() {
+  closeBox()
+}
+
+var saveButton = document.getElementById('modal-accept')
+saveButton.addEventListener('click', handleSave) 
+function handleSave () {
+  var name = document.getElementById('name-input').value
+  if(name === "") {
+    closeBox()
+  }
+  else {
+    console.log(name)
+    closeBox()
+  }
+}

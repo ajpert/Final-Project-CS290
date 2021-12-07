@@ -10,6 +10,7 @@ var test = false;
 
 app.use(express.static('public'));
 
+scoreData = require('./highScore')
 
 app.get('/', function (req, res, next) {
 if (true) {
@@ -26,7 +27,9 @@ app.get('/index.js', function (req, res) {
 	res.status(200).sendFile(__dirname + '/public/index.js');
 	test = true;
 });
+app.post('/addScore',function(req,res,next) {
 
+})
 app.get('*', function (req, res) {
 	if (test == false) {
 		console.log("  -- 404!")
