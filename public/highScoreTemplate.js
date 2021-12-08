@@ -8,10 +8,10 @@ templates['highScore'] = template({"compiler":[8,">= 4.3.0"],"main":function(con
         return undefined
     };
 
-  return "<p id=\"highscores-p\">\r\n    <span class=\"username\"> "
-    + alias4(((helper = (helper = lookupProperty(helpers,"username") || (depth0 != null ? lookupProperty(depth0,"username") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"username","hash":{},"data":data,"loc":{"start":{"line":2,"column":28},"end":{"line":2,"column":40}}}) : helper)))
-    + ":</span>\r\n    <span class=\"wpm\"> "
-    + alias4(((helper = (helper = lookupProperty(helpers,"wpm") || (depth0 != null ? lookupProperty(depth0,"wpm") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"wpm","hash":{},"data":data,"loc":{"start":{"line":3,"column":23},"end":{"line":3,"column":30}}}) : helper)))
-    + " </span>\r\n</p>";
+  return "<p id=\"highscores-p\" class=\"highScoreContainer\">\n    <span id=\"username\" class=\"username\"> "
+    + alias4(((helper = (helper = lookupProperty(helpers,"username") || (depth0 != null ? lookupProperty(depth0,"username") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"username","hash":{},"data":data,"loc":{"start":{"line":2,"column":42},"end":{"line":2,"column":54}}}) : helper)))
+    + ":</span>\n    <span id=\"wpm\" class=\"wpm\"> "
+    + alias4(((helper = (helper = lookupProperty(helpers,"wpm") || (depth0 != null ? lookupProperty(depth0,"wpm") : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"wpm","hash":{},"data":data,"loc":{"start":{"line":3,"column":32},"end":{"line":3,"column":39}}}) : helper)))
+    + " </span>\n</p>\n";
 },"useData":true});
 })();

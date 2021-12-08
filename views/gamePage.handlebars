@@ -18,15 +18,17 @@
         <p id="highscores-p" class="highscores">
             HIGHSCORES
         </p>
-        {{#each score}}
-            {{> highScore}}
-        {{/each}}
+        <div id="highscore-container">
+          {{#each score}}
+              {{> highScore}}
+          {{/each}}
+        </div>
     </div>
 </div>
 
 <div id="coding" class="crew">
     <p id="group" class="group-list">
-        Ian Beard, Zack Chand, James Rundle, Andy James
+      Authors:  Ian Beard, Zack Chand, James Rundle, Andy James
     </p>
 </div>
 

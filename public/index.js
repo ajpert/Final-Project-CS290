@@ -2,13 +2,29 @@ let words = ["geeks", "for", "geeks", "a",
 	"portal", "to", "learn", "can",
 	"be", "computer", "science",
 	"zoom", "yup", "fire", "in",
-	"be", "data", "geeks"];
+	"be", "data", "geeks", "addicted", "driving", "division", "scarecrow", "territory", "alluring", "ignore",
+	"underwear", "arrange", "lunchroom", "sun", "possessive", "jumbled", "channel", "confess", "elbow", "short",
+	"wind", "pail", "doubt", "hideous", "dashing", "charming", "answer", "incompetent", "market", "theory", "grandmother",
+	"pause", "guard", "flawless", "grubby", "screw", "channel", "kiss", "hammer", "iron", "hall", "sea", "abashed", "line",
+	"travel", "actor", "cheer", "erect", "airport", "authority", "frantic", "crash", "notebook", "helpful", "abundant", "friend",
+	"basketball", "planes", "ski", "prose", "thin", "deep", "meek", "jazzy", "cake", "grieving", "worry", "natural", "pleasant", "cook",
+	"fowl", "awful", "closed", "observant", "roasted", "questionable", "slim", "tow", "comfortable", "shelf", "ice", "nasty", "superb",
+	"awake", "skirt", "terrific", "example", "mislead", "tight", "bait", "pay", "irate", "chemical", "go", "stir", "vast", "surge", "growth",
+	"income", "ants", "crate", "wide", "loose", "front", "staking", "pretend", "disturbed", "snakes", "journey", "goldfish", "unknown", "net",
+	"fish", "cool", "school", "oregon", "state", "university", "computer", "science", "book", "read", "monitor", "nintendo", "fun", "give", "bad",
+	"hello", "bowl", "spoon", "cereal", "pen", "speaker", "cup", "mug", "coffee", "flask", "table", "bed", "drawer", "chair", "pillow", "friend",
+	"assignment", "keys", "dome", "ear", "face", "eyes"];
 let user_words = [];
+let highScores = [];
 
+
+var gameLength = 15
+console.log('hello')
 var count = 0;
 var correct = 0;
 var liveGame = false;
 var scoreScreen = false;
+var random = Math.floor(Math.random() * words.length)
 
 
 var start = 0
@@ -27,26 +43,19 @@ function user_append(user_input) { //Function to append users words to array
 	user_words.push(user_input);
 }
 
-/*
-btn.onclick = function () {
-	cycle = 0;
-	if (words[cycle]) {
-		document.getElementById('what-to-type').innerHTML = words[cycle];
-	}
-}
-*/
 document.getElementById("post-text-input").addEventListener('keypress', function (e) {
 
 	if (e.key === 'Enter' && scoreScreen === false) {
-		if (words.length > (count + 1) && liveGame === true) {
-
+		if (gameLength > (count + 1) && liveGame === true) {
+			console.log(count)
+			console.log(random)
 			//Clears input box before next input
 
 
 			var user_input = document.getElementById("post-text-input").value;
 
 
-			if (user_input === words[count]) {
+			if (user_input === words[random]) {
 				document.getElementById('is-it-correct').innerHTML = 'CORRECT';
 				correct = correct + 1;
 			}
@@ -54,8 +63,10 @@ document.getElementById("post-text-input").addEventListener('keypress', function
 				document.getElementById('is-it-correct').innerHTML = 'INCORRECT';
 			}
 			count = count + 1;
-			if (words[count]) {
-				document.getElementById('what-to-type').innerHTML = words[count];
+			random = Math.floor(Math.random() * words.length)
+			if (words[random]) {
+				
+				document.getElementById('what-to-type').innerHTML = words[random];
 			}
 		}
 		else {
@@ -72,7 +83,7 @@ document.getElementById("post-text-input").addEventListener('keypress', function
 			pop_up.classList.remove('hidden');
 			pop_upBack.classList.remove('hidden');
 
-			editScoreLabel.textContent = "Score: " + score + 'words/minute'
+			editScoreLabel.textContent = "Score " + score + 'words/minute'
 		}
 
 
@@ -81,43 +92,7 @@ document.getElementById("post-text-input").addEventListener('keypress', function
 
 });
 
-//Functions for timers
-/*
-function startTimer() {
-	pauseTimer();
-	stopWatch = setInterval(timer,100);
-}
 
-function pauseTimer() {
-	clearInterval(stopWatch);
-}
-
-function resetTimer() {
-	minute = 0;
-	second = 0;
-	millisecond = 0;
-}
-
-function timer() {
-  
-  millisecond += 100;
-  //console.log(millisecond)
-  //console.log(millisecond)
-	if (millisecond === 1000) {
-		millisecond = 0;
-		second++;
-    //console.log(second)
-	}
-	if (second == 60) {
-		second = 0;
-		minute++;
-	}
-	if (minute == 60) {
-		minute = 0;
-	}
-}
-
-*/
 
 var startButton = document.getElementById('start-typing-button')
 
@@ -133,7 +108,7 @@ function startTypingButton() //function to hide and unhide html parts
 	var hideStart = document.getElementById('start-typing-button')
 	var hideHigh = document.getElementById('highscore-box')
 	var hideGroup = document.getElementById('coding')
-	document.getElementById('what-to-type').innerHTML = words[0]
+	document.getElementById('what-to-type').innerHTML = words[random]
 	unhideInput.classList.remove('hidden')
 	unhideText.classList.remove('hidden')
 	unhideCorrect.classList.remove('hidden')
@@ -170,21 +145,7 @@ function closeBox() {
 	correct = 0;
 	//resetTimer();
 }
-/*
-for (var i = 0; i < dontSaveButtons.length; i++) {
-	console.log('test')
-	dontSaveButtons[i].addEventListener('click', closeBox)
-}
 
-
-
-function saveScore() {
-	var saveScore = 0;
-	closeBox()
-}
-
-saveButton.addEventListener('click', saveScore)
-*/
 var closeButton = document.getElementById('modal-close')
 var cancelButton = document.getElementById('modal-cancel')
 cancelButton.addEventListener('click',handleClose)
@@ -194,17 +155,25 @@ function handleClose() {
 }
 
 var saveButton = document.getElementById('modal-accept')
-saveButton.addEventListener('click', handleSave) 
+saveButton.addEventListener('click', handleSave)
 function handleSave () {
   var name = document.getElementById('name-input').value.trim()
-  if(name === "") {
-	  alert("Please put in your name");
-  }
-  else {
-	insertScore(name,score)
-	closeBox()
+	if (name === "") {
+		alert("Please put in your name");
+	}
+	else {
+		insertScore(name, score)
+		var addingScore = {
+			username: name,
+			wpm: score
+		}
+		highScores.push(addingScore);
 
-  }
+		highScores.sort(function (a, b) { return b.wpm - a.wpm })
+		updateArray()
+		closeBox()
+	}
+
 }
 
 function insertScore(username, wpm) {
@@ -220,13 +189,50 @@ function insertScore(username, wpm) {
 	var reqBody = JSON.stringify(content)
 	req.setRequestHeader('Content-Type', 'application/json')
 	req.send(reqBody)
-	console.log(reqBody)
-	/*
-	var reqBody = JSON.stringify(content)
-	req.setRequestHeader('Content-Type', 'application/json')
-	req.send(reqBody)
-	*/
-	var saved = Handlebars.templates.highScore(content)
-	var container = document.getElementById('highscore-box')
-	container.insertAdjacentHTML('beforeend',saved)
 }
+
+function parsePostElem(highToArray) {
+	var username = highToArray.querySelector('.username')
+	var wpm = highToArray.querySelector('.wpm')
+
+  var userScore = {
+    username: username.textContent,
+    wpm: wpm.textContent
+	};
+		return userScore;
+  };
+
+function scoreInsert(username, wpm)
+{
+	var high_score_box = document.getElementById('highscore-container')
+
+	var newScore = {
+		username: username,
+		wpm: wpm
+	}
+	var scoreCard = Handlebars.templates.highScore(newScore);
+  high_score_box.insertAdjacentHTML('beforeend', scoreCard)
+}
+
+function updateArray()
+{
+	var highScoresContainer = document.getElementById('highscore-container')
+	while(highScoresContainer.lastChild)
+	{
+		highScoresContainer.removeChild(highScoresContainer.lastChild)
+	}
+	highScores.forEach(function (userScore)
+	{
+		scoreInsert(userScore.username, userScore.wpm)
+  })
+}
+
+
+window.addEventListener('DOMContentLoaded', function (){
+	var highToArrays = document.getElementsByClassName('highScoreContainer');
+	for(var i = 0; i < highToArrays.length; i++)
+	{
+
+		highScores.push(parsePostElem(highToArrays[i]));
+	}
+})

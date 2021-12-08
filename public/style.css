@@ -132,23 +132,24 @@ img
   	box-shadow: 4px 4px 12px rgba(0, 0, 0, .5);
     overflow: auto;
     max-height: 200px
-  
-  
+
+
 }
 
 .crew
 {
-	display: flex;
-	justify-content: center;
- 	margin-top: 50px;
 	background-color: black;
-  	color: #ffffff;
-  	font-size: 15px;
-  	border: 2px solid #ffffff;
-  	border-radius: 5px;
-  	box-shadow: 4px 4px 12px rgba(0, 0, 0, .5);
+  color: #ffffff;
+	font-size: 15px;
+	border: 2px solid #ffffff;
+	border-radius: 5px;
+	box-shadow: 4px 4px 12px rgba(0, 0, 0, .5);
 	bottom: 5px;
 	align-items: center;
+  position: fixed;
+  bottom: 10px;
+  width: 99%;
+  text-align: center;
 }
 
 
