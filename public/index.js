@@ -19,7 +19,7 @@ let highScores = [];
 
 
 var gameLength = 15
-console.log('hello')
+
 var count = 0;
 var correct = 0;
 var liveGame = false;
@@ -43,16 +43,14 @@ function user_append(user_input) { //Function to append users words to array
 	user_words.push(user_input);
 }
 
-document.getElementById("post-text-input").addEventListener('keypress', function (e) {
+document.getElementById("user-text-input").addEventListener('keypress', function (e) {
 
 	if (e.key === 'Enter' && scoreScreen === false) {
-		if (gameLength > (count + 1) && liveGame === true) {
-			console.log(count)
-			console.log(random)
+		if (gameLength >= (count + 1) && liveGame === true) {
 			//Clears input box before next input
 
 
-			var user_input = document.getElementById("post-text-input").value;
+			var user_input = document.getElementById("user-text-input").value;
 
 
 			if (user_input === words[random]) {
@@ -73,7 +71,7 @@ document.getElementById("post-text-input").addEventListener('keypress', function
       scoreScreen = true
       end = Date.now()
       liveGame = false
-			count = 0;
+			
 			//pauseTimer();
 			var time = ((end-start)/1000)/60
 			score = Math.round(correct / time)
@@ -82,12 +80,12 @@ document.getElementById("post-text-input").addEventListener('keypress', function
 			var editScoreLabel = document.getElementById('score-output')
 			pop_up.classList.remove('hidden');
 			pop_upBack.classList.remove('hidden');
-
-			editScoreLabel.textContent = "Score " + score + 'words/minute'
+			editScoreLabel.textContent = "Score " + score + ' words/minute | ' + correct + '/' + count + ' correct'
+			count = 0;
 		}
 
 
-		document.getElementById("post-text-input").value = "";
+		document.getElementById("user-text-input").value = "";
 	}
 
 });
@@ -118,6 +116,32 @@ function startTypingButton() //function to hide and unhide html parts
 	//startTimer();
 }
 
+var startButton = document.getElementById('start-typing-button')
+
+function startTypingButton() //function to hide and unhide html parts
+{
+	scoreScreen = false
+	liveGame = true
+	start = Date.now()
+	document.getElementById('is-it-correct').innerHTML = 'Have Fun';
+	var unhideCorrect = document.getElementById('is-it-correct')
+	var unhideInput = document.getElementById('typing-input')
+	var unhideText = document.getElementById('what-to-type')
+	var hideStart = document.getElementById('start-typing-button')
+	var hideHigh = document.getElementById('highscore-box')
+	var hideGroup = document.getElementById('coding')
+	var hideInstructions = document.getElementById('instruction-box')
+	document.getElementById('what-to-type').innerHTML = words[random]
+	unhideInput.classList.remove('hidden')
+	unhideText.classList.remove('hidden')
+	unhideCorrect.classList.remove('hidden')
+	hideStart.classList.add('hidden')
+	hideHigh.classList.add('hidden')
+	hideGroup.classList.add('hidden')
+	hideInstructions.classList.add('hidden')
+	//startTimer();
+}
+
 startButton.addEventListener('click', startTypingButton)
 
 
@@ -133,6 +157,7 @@ function closeBox() {
 	var unhideStart = document.getElementById('start-typing-button')
 	var unhideHigh = document.getElementById('highscore-box')
 	var unhideGroup = document.getElementById('coding')
+	var unhideInstructions = document.getElementById('instruction-box')
 	hideHighScoreBox.classList.add('hidden')
 	hideHighScoreBoxback.classList.add('hidden')
 	hideInput.classList.add('hidden')
@@ -141,6 +166,7 @@ function closeBox() {
 	unhideStart.classList.remove('hidden')
 	unhideHigh.classList.remove('hidden')
 	unhideGroup.classList.remove('hidden')
+	unhideInstructions.classList.remove('hidden')
 	score = 0;
 	correct = 0;
 	//resetTimer();
@@ -148,16 +174,16 @@ function closeBox() {
 
 var closeButton = document.getElementById('modal-close')
 var cancelButton = document.getElementById('modal-cancel')
-cancelButton.addEventListener('click',handleClose)
+cancelButton.addEventListener('click', handleClose)
 closeButton.addEventListener('click', handleClose)
 function handleClose() {
-  closeBox()
+	closeBox()
 }
 
 var saveButton = document.getElementById('modal-accept')
 saveButton.addEventListener('click', handleSave)
-function handleSave () {
-  var name = document.getElementById('name-input').value.trim()
+function handleSave() {
+	var name = document.getElementById('name-input').value.trim()
 	if (name === "") {
 		alert("Please put in your name");
 	}
@@ -184,7 +210,7 @@ function insertScore(username, wpm) {
 
 	var url = '/addScore';
 	var req = new XMLHttpRequest();
-	req.open('POST',url)
+	req.open('POST', url)
 
 	var reqBody = JSON.stringify(content)
 	req.setRequestHeader('Content-Type', 'application/json')
@@ -194,16 +220,17 @@ function insertScore(username, wpm) {
 function parsePostElem(highToArray) {
 	var username = highToArray.querySelector('.username')
 	var wpm = highToArray.querySelector('.wpm')
-
-  var userScore = {
-    username: username.textContent,
-    wpm: wpm.textContent
+	username = username.textContent;
+	wpm = wpm.textContent
+	username = username.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
+	var userScore = {
+		username: username,
+		wpm: wpm
 	};
-		return userScore;
-  };
+	return userScore;
+};
 
-function scoreInsert(username, wpm)
-{
+function scoreInsert(username, wpm) {
 	var high_score_box = document.getElementById('highscore-container')
 
 	var newScore = {
@@ -211,27 +238,23 @@ function scoreInsert(username, wpm)
 		wpm: wpm
 	}
 	var scoreCard = Handlebars.templates.highScore(newScore);
-  high_score_box.insertAdjacentHTML('beforeend', scoreCard)
+	high_score_box.insertAdjacentHTML('beforeend', scoreCard)
 }
 
-function updateArray()
-{
+function updateArray() {
 	var highScoresContainer = document.getElementById('highscore-container')
-	while(highScoresContainer.lastChild)
-	{
+	while (highScoresContainer.lastChild) {
 		highScoresContainer.removeChild(highScoresContainer.lastChild)
 	}
-	highScores.forEach(function (userScore)
-	{
+	highScores.forEach(function (userScore) {
 		scoreInsert(userScore.username, userScore.wpm)
-  })
+	})
 }
 
 
-window.addEventListener('DOMContentLoaded', function (){
+window.addEventListener('DOMContentLoaded', function () {
 	var highToArrays = document.getElementsByClassName('highScoreContainer');
-	for(var i = 0; i < highToArrays.length; i++)
-	{
+	for (var i = 0; i < highToArrays.length; i++) {
 
 		highScores.push(parsePostElem(highToArrays[i]));
 	}

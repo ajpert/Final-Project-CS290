@@ -95,7 +95,7 @@ img
 
 }
 
-#post-text-input
+#user-text-input
 {
   resize: none;
   font-size: 20px;
@@ -183,11 +183,11 @@ img
 
 .modal-dialog {
   width: auto;
-  max-width: 600px;
-  min-width: 350px;
-  min-height: 300px;
-  margin: 40px auto;
-  background-color: #fff;
+  max-width: 400px;
+  min-width: 200px;
+  height: 300px;
+  margin: 100px auto;
+  background-color: #f79367;
   border-radius: 15px;
 }
 .modal-header {
@@ -196,6 +196,7 @@ img
 }
 .modal-header h3 {
   margin: 0;
+  text-align: center;
   font-size: 28px;
 }
 #modal-close {
@@ -235,13 +236,13 @@ img
 
 .modal-footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   padding: 10px 10px 20px 10px;
 }
 
-#modal-cancel,
+
 #modal-accept {
-  margin-right: 20px;
+  margin-left: 20px;
 }
 
 #modal-cancel {
@@ -276,13 +277,37 @@ img
     text-align: center;
 }
 
-    .error-container h2 {
+.error-container h2 {
         font-size: 128px;
         margin-top: 50px;
         margin-bottom: 0;
-    }
+}
 
-    .error-container h3 {
+.error-container h3 {
         font-size: 32px;
         margin: 0;
-    }
+}
+
+#instruction-box {
+	border: solid black;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	/* bring your own prefixes */
+	transform: translate(-50%, -50%);
+	color: white;
+	padding: 20px;
+	background-color: #000;
+	border: 2px solid #ffffff;
+	border-radius: 5px;
+	font-weight: lighter;
+
+}
+
+#instructions-list {
+	display: table;
+	text-align: left;
+	font-size:20px;
+	margin: 0;
+	padding: 0;
+}
